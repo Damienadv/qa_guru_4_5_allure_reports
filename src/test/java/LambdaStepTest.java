@@ -21,11 +21,8 @@ public class LambdaStepTest {
                 open(BASE_URL)
         );
 
-        step("Ищем репозиторий  " + REPOSITORY, () ->{
-            $(".header-search-input").click();
-            $(".header-search-input").setValue(REPOSITORY);
-            $(".header-search-input").submit();
-        });
+        step("Ищем репозиторий  " + REPOSITORY, () ->
+                $(".header-search-input").setValue(REPOSITORY).submit());
 
         step("Кликаем на репозиторий " + REPOSITORY, () ->
                 $(By.linkText(REPOSITORY)).click()

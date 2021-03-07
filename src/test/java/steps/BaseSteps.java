@@ -17,14 +17,12 @@ public class BaseSteps {
         open(BASE_URL);
     }
 
-    @Step("Ищем репозиторий ${repository} по имени")
+    @Step("Ищем репозиторий {repository} по имени")
     public void searchForRepository(String  repository) {
-        $(".header-search-input").click();
-        $(".header-search-input").setValue(repository);
-        $(".header-search-input").submit();
+        $(".header-search-input").setValue(repository).submit();
     }
 
-    @Step("Открываем репозиторий ${repository}")
+    @Step("Открываем репозиторий {repository}")
     public void goToRepositoryFromSearch(String repository){
         $(By.linkText(repository)).click();
     }
@@ -33,7 +31,7 @@ public class BaseSteps {
     public void openRepositoryIssues(){
         $(withText("Issues")).click();
     }
-    @Step("Проверяем, что в репозитории есть Issue с номером ${issueNumber}")
+    @Step("Проверяем, что в репозитории есть Issue с номером {issueNumber}")
     public void shouldSeeIssueWithNumber(String issueNumber){
         $(withText(issueNumber)).should(Condition.exist);
     }
