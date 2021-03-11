@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.conditions.Visible;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
@@ -12,6 +13,7 @@ public class LambdaStepTest {
     private static final String REPOSITORY = "eroshenkoam/allure-example";
     private static final String ISSUE_NUMBER = "#50";
     private static final String BASE_URL = "https://github.com/";
+    public static final Condition visible = new Visible();
 
 
     @Test
@@ -32,7 +34,7 @@ public class LambdaStepTest {
                 $(withText("Issues")).click()
         );
         step("Проверяем, что Issue с именем " + ISSUE_NUMBER + " существует", () ->{
-            $(withText(ISSUE_NUMBER)).should(Condition.exist);
+            $(withText(ISSUE_NUMBER)).shouldBe(visible);
         });
     }
 }

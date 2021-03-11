@@ -1,6 +1,7 @@
 package steps;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.conditions.Visible;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -11,6 +12,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class BaseSteps {
 
     private static final String BASE_URL = "https://github.com/";
+    public static final Condition visible = new Visible();
 
     @Step("Открываем главную страницу")
     public void openMainPage() {
@@ -33,6 +35,6 @@ public class BaseSteps {
     }
     @Step("Проверяем, что в репозитории есть Issue с номером {issueNumber}")
     public void shouldSeeIssueWithNumber(String issueNumber){
-        $(withText(issueNumber)).should(Condition.exist);
+        $(withText(issueNumber)).shouldBe(visible);
     }
 }
